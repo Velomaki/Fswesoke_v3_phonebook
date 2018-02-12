@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
     res.send('<h1>Puhelinluettelo</h1>')
   })
 
-  app.get('/info', (req, res) => {
+  app.get('/api/info', (req, res) => {
     const info = `Puhelinluettelossa ${persons.length} henkilön tiedot `
     res.send(
         `<p>${info}</p>
@@ -53,11 +53,11 @@ app.get('/', (req, res) => {
 })
 
   
-  app.get('/persons', (req, res) => {
+  app.get('/api/persons', (req, res) => {
     res.json(persons)
   })
 
-  app.get('/persons/:id',(req,res) =>{
+  app.get('/api/persons/:id',(req,res) =>{
       const id = Number(req.params.id)
       const person = persons.find(person => person.id === id)
       if(person){
@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
 
   })
 
-  app.post('/persons/', (req,res) =>{
+  app.post('/api/persons/', (req,res) =>{
       const raja = persons.length > 0 ? persons.map(p => p.id).sort().reverse()[0] : 0
       const body = req.body
       if(!body.name){
@@ -94,7 +94,7 @@ app.get('/', (req, res) => {
       res.json(person)
   })
 
-  app.delete('/persons/:id', (req,res) =>{
+  app.delete('/api/persons/:id', (req,res) =>{
     const id = Number(req.params.id)
     notes = persons.filter(person => person.id !== id)
 
