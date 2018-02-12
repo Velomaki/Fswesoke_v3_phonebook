@@ -4,11 +4,13 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 
+
 morgan.token('body-content', function (req, res) { return JSON.stringify(req.body) })
 //MUISTA lisätä nää alla olevat myös!
 app.use(bodyParser.json())
 app.use(morgan(':method :url :body-content :status :res[content-length] - :response-time ms'))
 app.use(cors())
+app.use(express.static('build'))
 
 
 let persons = [
